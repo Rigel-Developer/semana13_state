@@ -12,18 +12,13 @@ class PersonProvider extends ChangeNotifier {
 
   bool get checkPerson => _person != null;
 
-  // set person(List<Person>? value) {
-  //   _person = value;
-  //   notifyListeners();
-  // }
-
   void addPerson(Person person) {
     _person = person;
     notifyListeners();
   }
 
-  // void removePerson(Person person) {
-  //   _person!.remove(person);
-  //   notifyListeners();
-  // }
+  void removePerson() {
+    _person = null;
+    notifyListeners();
+  }
 }

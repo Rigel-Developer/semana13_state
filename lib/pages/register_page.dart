@@ -73,9 +73,7 @@ class RegisterPage extends StatelessWidget {
                     backgroundColor: Colors.red,
                   ),
                   onPressed: () {
-                    print(nameController.text);
-                    print(lastNameController.text);
-                    print(emailController.text);
+                    personProvider.removePerson();
                   },
                   child: const Text('Eliminar'),
                 ),
