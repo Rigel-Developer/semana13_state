@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:semana13_state/bloc/person/person_bloc.dart';
+import 'package:semana13_state/models/person.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -47,9 +50,15 @@ class RegisterPage extends StatelessWidget {
                     backgroundColor: Colors.indigo,
                   ),
                   onPressed: () {
-                    print(nameController.text);
-                    print(lastNameController.text);
-                    print(emailController.text);
+                    Person person = Person(
+                      name: nameController.text,
+                      lastName: lastNameController.text,
+                      email: emailController.text,
+                    );
+
+                    BlocProvider.of<PersonBloc>(context).add(
+                      AddPerson(person: person),
+                    );
                   },
                   child: const Text('Register'),
                 ),
@@ -65,9 +74,9 @@ class RegisterPage extends StatelessWidget {
                     backgroundColor: Colors.red,
                   ),
                   onPressed: () {
-                    print(nameController.text);
-                    print(lastNameController.text);
-                    print(emailController.text);
+                    BlocProvider.of<PersonBloc>(context).add(
+                      DeletePerson(),
+                    );
                   },
                   child: const Text('Eliminar'),
                 ),
