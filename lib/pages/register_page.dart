@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:semana13_state/models/person.dart';
+import 'package:semana13_state/providers/counter_provider.dart';
+import 'package:semana13_state/providers/person_provider.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -8,7 +12,8 @@ class RegisterPage extends StatelessWidget {
     TextEditingController nameController = TextEditingController();
     TextEditingController lastNameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
-
+    CounterProvider counterProvider = Provider.of<CounterProvider>(context);
+    PersonProvider personProvider = Provider.of<PersonProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Register Page'),
@@ -47,9 +52,12 @@ class RegisterPage extends StatelessWidget {
                     backgroundColor: Colors.indigo,
                   ),
                   onPressed: () {
-                    print(nameController.text);
-                    print(lastNameController.text);
-                    print(emailController.text);
+                    Person person = Person(
+                      name: nameController.text,
+                      lastName: lastNameController.text,
+                      email: emailController.text,
+                    );
+                    personProvider.addPerson(person);
                   },
                   child: const Text('Register'),
                 ),
